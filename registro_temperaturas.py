@@ -1,89 +1,68 @@
 
-# Importamos la librería NumPy y la renombramos como np
+# Importamos NumPy
 import numpy as np
 
 
-# Función para generar las temperaturas del mes
+# Función para generar temperaturas
 def generar_temperaturas():
-    """
-    Genera 30 temperaturas aleatorias entre 10 y 40 grados.
-    Retorna un arreglo NumPy.
-    """
 
-    # Genera 30 números enteros aleatorios entre 10 y 40
-    temperaturas = np.random.randint(10, 41, 30)
+    # Genera 30 temperaturas aleatorias
+    temperaturas = np.random.randint(
+        15,
+        40,
+        30
+    )
 
-    # Retorna el arreglo generado
     return temperaturas
 
 
-# Función para analizar las temperaturas
-def analizar_temperaturas(temperaturas):
-    """
-    Calcula estadísticas básicas del arreglo.
-    """
 
-    # Calcula la temperatura promedio
-    promedio = np.mean(temperaturas)
+# Función para analizar temperaturas
+def analizar_temperaturas(datos):
 
-    # Obtiene la temperatura máxima
-    maxima = np.max(temperaturas)
+    # Calcula promedio
+    promedio = np.mean(datos)
 
-    # Obtiene la temperatura mínima
-    minima = np.min(temperaturas)
+    # Temperatura máxima
+    maxima = np.max(datos)
 
-    # Calcula la desviación estándar
-    desviacion = np.std(temperaturas)
+    # Temperatura mínima
+    minima = np.min(datos)
 
-    # Calcula la varianza
-    varianza = np.var(temperaturas)
+    # Desviación estándar
+    desviacion = np.std(datos)
 
-    # Obtiene la posición del valor más alto
-    dia_mas_caluroso = np.argmax(temperaturas) + 1
+    # Varianza
+    varianza = np.var(datos)
 
-    # Obtiene la posición del valor más bajo
-    dia_mas_frio = np.argmin(temperaturas) + 1
+    # Día más caluroso
+    dia_caluroso = np.argmax(datos) + 1
 
-    # Mostrar resultados
-    print("\n========== REPORTE DE TEMPERATURAS ==========")
-
-    print("\nTemperaturas registradas:")
-    print(temperaturas)
-
-    print(f"\nTemperatura promedio: {promedio:.2f} °C")
-
-    print(f"Temperatura máxima: {maxima} °C")
-
-    print(f"Temperatura mínima: {minima} °C")
-
-    print(f"Desviación estándar: {desviacion:.2f}")
-
-    print(f"Varianza: {varianza:.2f}")
-
-    print(
-        f"Día más caluroso: Día {dia_mas_caluroso} "
-        f"con {maxima} °C"
-    )
-
-    print(
-        f"Día más frío: Día {dia_mas_frio} "
-        f"con {minima} °C"
-    )
+    # Día más frío
+    dia_frio = np.argmin(datos) + 1
 
 
-# Función principal
+    print("\n====== TEMPERATURAS ======")
+    print(datos)
+
+    print("\nPromedio:", round(promedio,2))
+    print("Máxima:", maxima)
+    print("Mínima:", minima)
+    print("Desviación:", round(desviacion,2))
+    print("Varianza:", round(varianza,2))
+    print("Día más caluroso:", dia_caluroso)
+    print("Día más frío:", dia_frio)
+
+
+
+# Programa principal
 def main():
-    """
-    Ejecuta el programa principal.
-    """
 
-    # Genera las temperaturas
     temperaturas = generar_temperaturas()
 
-    # Analiza las temperaturas
-    analizar_temperaturas(temperaturas)
+    analizar_temperaturas(
+        temperaturas
+    )
 
 
-# Punto de entrada del programa
-if __name__ == "__main__":
-    main()
+main()

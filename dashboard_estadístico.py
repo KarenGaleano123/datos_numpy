@@ -1,211 +1,64 @@
 
-# Importamos la librería NumPy
 import numpy as np
 
 
-
-
-
-# Función para crear una matriz
+# Crear matriz
 def crear_matriz():
-    """
-    Crea una matriz de ejemplo para analizar.
 
-    La matriz puede cambiarse por cualquier
-    conjunto de datos.
-    """
+    filas = int(input("Filas: "))
+    columnas = int(input("Columnas: "))
 
-
-    # Generamos una matriz aleatoria
-    # de 5 filas y 4 columnas.
-    matriz = np.random.randint(
+    return np.random.randint(
         1,
         100,
-        (5, 4)
+        (filas, columnas)
     )
 
 
-    # Retornamos la matriz creada
-    return matriz
+# Generar reporte
+def reporte(datos):
 
+    print("\n====== DASHBOARD ======")
 
+    print("Matriz:")
+    print(datos)
 
+    print("\nDimensión:",
+          datos.shape)
 
+    print("Filas:",
+          datos.shape[0])
 
-# Función encargada de generar el reporte
-def generar_reporte(matriz):
-    """
-    Analiza cualquier matriz y muestra
-    información estadística.
-    """
+    print("Columnas:",
+          datos.shape[1])
 
+    print("Total datos:",
+          datos.size)
 
+    print("Máximo:",
+          np.max(datos))
 
-    # Obtiene las dimensiones de la matriz.
-    dimension = matriz.shape
+    print("Mínimo:",
+          np.min(datos))
 
+    print("Promedio:",
+          round(np.mean(datos), 2))
 
+    print("Mediana:",
+          np.median(datos))
 
-    # Obtiene el número de filas.
-    filas = matriz.shape[0]
+    print("Varianza:",
+          round(np.var(datos), 2))
 
+    print("Desviación:",
+          round(np.std(datos), 2))
 
 
-    # Obtiene el número de columnas.
-    columnas = matriz.shape[1]
-
-
-
-    # Calcula la cantidad total de datos.
-    total_datos = matriz.size
-
-
-
-    # Encuentra el valor máximo.
-    maximo = np.max(
-        matriz
-    )
-
-
-
-    # Encuentra el valor mínimo.
-    minimo = np.min(
-        matriz
-    )
-
-
-
-    # Calcula el promedio.
-    promedio = np.mean(
-        matriz
-    )
-
-
-
-    # Calcula la mediana.
-    mediana = np.median(
-        matriz
-    )
-
-
-
-    # Calcula la varianza.
-    varianza = np.var(
-        matriz
-    )
-
-
-
-    # Calcula la desviación estándar.
-    desviacion = np.std(
-        matriz
-    )
-
-
-
-    # Mostrar el reporte
-
-    print("\n========== DASHBOARD ESTADÍSTICO ==========")
-
-
-    print("\nMatriz analizada:")
-    print(matriz)
-
-
-
-    print("\n========== INFORMACIÓN GENERAL ==========")
-
-
-    print(
-        "Dimensión de la matriz:",
-        dimension
-    )
-
-
-    print(
-        "Número de filas:",
-        filas
-    )
-
-
-    print(
-        "Número de columnas:",
-        columnas
-    )
-
-
-    print(
-        "Total de datos:",
-        total_datos
-    )
-
-
-
-    print("\n========== ANÁLISIS ESTADÍSTICO ==========")
-
-
-    print(
-        "Valor máximo:",
-        maximo
-    )
-
-
-    print(
-        "Valor mínimo:",
-        minimo
-    )
-
-
-    print(
-        "Promedio:",
-        f"{promedio:.2f}"
-    )
-
-
-    print(
-        "Mediana:",
-        mediana
-    )
-
-
-    print(
-        "Varianza:",
-        f"{varianza:.2f}"
-    )
-
-
-    print(
-        "Desviación estándar:",
-        f"{desviacion:.2f}"
-    )
-
-
-
-
-
-
-
-# Función principal
 def main():
-    """
-    Ejecuta el programa completo.
-    """
 
-
-    # Crear la matriz que será analizada
     matriz = crear_matriz()
 
-
-    # Generar el reporte estadístico
-    generar_reporte(
-        matriz
-    )
+    reporte(matriz)
 
 
-
-
-
-# Punto de inicio del programa
-if __name__ == "__main__":
-
-    main()
+main()

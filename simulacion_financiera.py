@@ -1,161 +1,55 @@
 
-# Importamos la librería NumPy
 import numpy as np
 
 
+# Generar precios
+def generar():
 
-
-# Función para generar los precios
-def generar_precios():
-    """
-    Genera los precios de una acción durante 100 días.
-
-    Los valores representan precios en pesos.
-    """
-
-
-    # Genera 100 precios aleatorios decimales
-    # entre 5000 y 20000 pesos.
-    precios = np.random.uniform(
-        5000,
-        20000,
+    return np.random.uniform(
+        50,
+        300,
         100
     )
 
 
-    # Retorna el arreglo generado
-    return precios
+# Analizar precios
+def analizar(precios):
 
+    promedio = np.mean(precios)
 
-
-
-
-# Función para analizar los precios
-def analizar_accion(precios):
-    """
-    Realiza los cálculos financieros
-    solicitados.
-    """
-
-
-    # Calcula el precio promedio
-    # de la acción durante los 100 días.
-    precio_promedio = np.mean(
-        precios
-    )
-
-
-
-    # Obtiene el precio máximo alcanzado.
-    precio_maximo = np.max(
-        precios
-    )
-
-
-
-    # Obtiene el precio mínimo alcanzado.
-    precio_minimo = np.min(
-        precios
-    )
-
-
-
-    # Calcula la variación porcentual
-    # entre el primer y último día.
-    variacion_porcentual = (
+    variacion = (
         (precios[-1] - precios[0])
         /
         precios[0]
     ) * 100
 
+    superiores = np.where(
+        precios > promedio
+    )[0] + 1
+
+    print("\n====== FINANZAS ======")
+
+    print("Promedio:",
+          round(promedio, 2))
+
+    print("Máximo:",
+          round(np.max(precios), 2))
+
+    print("Mínimo:",
+          round(np.min(precios), 2))
+
+    print("Variación %:",
+          round(variacion, 2))
+
+    print("Días sobre promedio:")
+    print(superiores)
 
 
-    # Encuentra los días donde el precio
-    # fue superior al promedio.
-    dias_superiores = np.where(
-        precios > precio_promedio
-    )
-
-
-
-    # Mostrar resultados
-
-    print("\n========== SIMULACIÓN FINANCIERA ==========")
-
-
-    print("\nPrecios registrados:")
-    print(precios)
-
-
-
-    print(
-        "\nPrecio promedio:",
-        f"${precio_promedio:,.2f}"
-    )
-
-
-
-    print(
-        "Precio máximo:",
-        f"${precio_maximo:,.2f}"
-    )
-
-
-
-    print(
-        "Precio mínimo:",
-        f"${precio_minimo:,.2f}"
-    )
-
-
-
-    print(
-        "Variación porcentual:",
-        f"{variacion_porcentual:.2f}%"
-    )
-
-
-
-    print(
-        "\nDías donde el precio fue superior al promedio:"
-    )
-
-
-    # Recorre los días encontrados
-    for dia in dias_superiores[0]:
-
-        print(
-            f"Día {dia + 1}: "
-            f"${precios[dia]:,.2f}"
-        )
-
-
-
-
-
-
-
-# Función principal
 def main():
-    """
-    Ejecuta el programa completo.
-    """
+
+    precios = generar()
+
+    analizar(precios)
 
 
-    # Genera los precios de la acción
-    precios = generar_precios()
-
-
-    # Analiza los datos financieros
-    analizar_accion(
-        precios
-    )
-
-
-
-
-
-# Punto de inicio del programa
-if __name__ == "__main__":
-
-    main()
+main()
